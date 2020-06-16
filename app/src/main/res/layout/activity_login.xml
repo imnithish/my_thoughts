@@ -20,18 +20,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/log_in_prompt"
+            android:fontFamily="@font/rock_salt"
+            android:text="@string/app_full_name"
             android:textColor="@color/mainText"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <com.shobhitpuri.custombuttons.GoogleSignInButton
-            app:isDarkTheme="{}"
+            android:layout_marginTop="20sp"
+            app:isDarkTheme="true"
             android:id="@+id/log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/log_in" />
+            android:text="@string/log_in_prompt" />
     </LinearLayout>
 
 
@@ -39,7 +41,7 @@
         android:id="@+id/mode_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="40sp"
         android:checked="false"
         android:fontFamily="@font/open_sans"
         android:text="@string/mode_switch_text"
