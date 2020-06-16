@@ -1,24 +1,44 @@
 package com.imnstudios.mythoughts
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.CompoundButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.imnstudios.mythoughts.utils.AppThemeMode
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.imnstudios.mythoughts.utils.snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var slideDownAnim: Animation
-    lateinit var fadeInAnim: Animation
+    private lateinit var slideDownAnim: Animation
+    private lateinit var fadeInAnim: Animation
+    private val RC_SIGN_IN = 1
+    private val tag = "LoginActivity"
+
+    private lateinit var baseLayout: ConstraintLayout
+
+    companion object {
+        lateinit var auth: FirebaseAuth
+        lateinit var mGoogleSignInClient: GoogleSignInClient
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        baseLayout = findViewById(R.id.base_layout)
 
         //setting up animation starts here
         slideDownAnim =
@@ -26,30 +46,100 @@ class LoginActivity : AppCompatActivity() {
         fadeInAnim = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in_animation)
         heading.animation = slideDownAnim
         Handler().postDelayed({
-//            mode_switch.visibility = View.VISIBLE
-//            mode_switch.animation = fadeInAnim
             log_in.visibility = View.VISIBLE
             log_in.animation = fadeInAnim
         }, 500)
         //setting up animation ends here
 
-        //setting up AppThemeMode starts here
+        setupAppTheme()
+
+        //initialise the FirebaseAuth object
+        auth = FirebaseAuth.getInstance()
+
+        //GoogleSignInOptions object
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .build()
+
+        //get the GoogleSignInClient object from GoogleSignIn class
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        log_in.setOnClickListener {
+            signIn()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (auth.currentUser != null) {
+            Intent(this, MainActivity::class.java).also {
+                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(it)
+            }
+        }
+    }
+
+    private fun signIn() {
+        val signInIntent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //result returned from launching the Intent from mGoogleSignInClient.signInIntent
+        if (requestCode == RC_SIGN_IN) {
+
+            //GoogleSignIn Task
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                //Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)
+                //authenticating with firebase
+                firebaseAuthWithGoogle(account!!)
+            } catch (e: ApiException) {
+                baseLayout.snackbar("Something's wrong $e")
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        Log.d(tag, " firebaseAuthWithGoogle:" + acct.id!!)
+
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+
+        //sign in using Firebase
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(
+                this
+            ) { task ->
+                if (task.isSuccessful) {
+                    Log.d(tag, " signInWithCredential:success")
+                    Toast.makeText(this, "Welcome "+ auth.currentUser?.displayName, Toast.LENGTH_SHORT)
+                        .show()
+                    Intent(this, MainActivity::class.java).also {
+                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(it)
+                    }
+                } else {
+                    Log.w(tag, " signInWithCredential:failure", task.exception)
+                    baseLayout.snackbar("Authentication failed ${task.exception.toString()}")
+                }
+            }
+    }
+
+
+    private fun setupAppTheme() {
         val appSettingPrefs: SharedPreferences = getSharedPreferences("AppThemeModePrefs", 0)
         val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", true)
         if (!isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
-
-//        mode_switch.isChecked = isNightModeOn
-//        mode_switch.setOnCheckedChangeListener { _: CompoundButton, isNightModeOnFlag: Boolean ->
-//            if (isNightModeOnFlag) {
-//                val appTheme = AppThemeMode(true, applicationContext)
-//                appTheme.setTheme()
-//            } else {
-//                val appTheme = AppThemeMode(false, applicationContext)
-//                appTheme.setTheme()
-//            }
-//        }
-        //setting up AppThemeMode ends here
     }
+
+
 }
