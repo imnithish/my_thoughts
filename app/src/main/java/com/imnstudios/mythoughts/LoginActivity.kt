@@ -1,5 +1,6 @@
 package com.imnstudios.mythoughts
 
+import android.app.ProgressDialog.show
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -19,6 +21,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.imnstudios.mythoughts.utils.hide
+import com.imnstudios.mythoughts.utils.show
 import com.imnstudios.mythoughts.utils.snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -29,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
     private val tag = "LoginActivity"
 
     private lateinit var baseLayout: ConstraintLayout
+    private lateinit var progressBar: ProgressBar
 
     companion object {
         lateinit var auth: FirebaseAuth
@@ -39,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         baseLayout = findViewById(R.id.base_layout)
+        progressBar = findViewById(R.id.progress_bar)
 
         //setting up animation starts here
         slideDownAnim =
@@ -82,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signIn() {
+        progress_bar.show()
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
@@ -101,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
                 baseLayout.snackbar("Something's wrong $e")
+                progress_bar.hide()
             }
         }
     }
@@ -126,6 +134,7 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     Log.w(tag, " signInWithCredential:failure", task.exception)
                     baseLayout.snackbar("Authentication failed ${task.exception.toString()}")
+                    progress_bar.hide()
                 }
             }
     }
