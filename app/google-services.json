@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "427950122902",
+    "firebase_url": "https://my-thoughts-f214f.firebaseio.com",
+    "project_id": "my-thoughts-f214f",
+    "storage_bucket": "my-thoughts-f214f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427950122902:android:1128606e6b5085ab5fdfb7",
+        "android_client_info": {
+          "package_name": "com.imnstudios.mythoughts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427950122902-6r74mca054fe7eb6cbg51str3t26178m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASNSMTcdDfZQOvpLbksaVLla3kaCcVFbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427950122902-6r74mca054fe7eb6cbg51str3t26178m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
