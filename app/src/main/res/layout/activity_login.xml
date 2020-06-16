@@ -7,56 +7,53 @@
     android:background="@color/mainBackground"
     tools:context=".LoginActivity">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:fontFamily="@font/rock_salt"
+        android:shadowColor="@color/textAlt"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:text="@string/app_full_name"
+        android:textColor="@color/mainText"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/rock_salt"
-            android:shadowColor="@color/textAlt"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="1"
-            android:text="@string/app_full_name"
-            android:textColor="@color/mainText"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <com.shobhitpuri.custombuttons.GoogleSignInButton
-            android:id="@+id/log_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20sp"
-            android:text="@string/log_in_prompt"
-            android:visibility="invisible"
-            app:isDarkTheme="true"
-            tools:visibility="visible" />
-    </LinearLayout>
+    <com.shobhitpuri.custombuttons.GoogleSignInButton
+        android:id="@+id/log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        android:text="@string/log_in_prompt"
+        android:visibility="invisible"
+        app:isDarkTheme="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/heading"
+        tools:visibility="visible" />
 
 
-<!--    <com.google.android.material.switchmaterial.SwitchMaterial-->
-<!--        android:id="@+id/mode_switch"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="20sp"-->
-<!--        android:checked="false"-->
-<!--        android:fontFamily="@font/open_sans"-->
-<!--        android:text="@string/mode_switch_text"-->
-<!--        android:textColor="@color/mainText"-->
-<!--        android:visibility="invisible"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        tools:visibility="visible" />-->
+    <!--    <com.google.android.material.switchmaterial.SwitchMaterial-->
+    <!--        android:id="@+id/mode_switch"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="20sp"-->
+    <!--        android:checked="false"-->
+    <!--        android:fontFamily="@font/open_sans"-->
+    <!--        android:text="@string/mode_switch_text"-->
+    <!--        android:textColor="@color/mainText"-->
+    <!--        android:visibility="invisible"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        tools:visibility="visible" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,16 +30,16 @@ class LoginActivity : AppCompatActivity() {
 //            mode_switch.animation = fadeInAnim
             log_in.visibility = View.VISIBLE
             log_in.animation = fadeInAnim
-        }, 1000)
+        }, 500)
         //setting up animation ends here
 
         //setting up AppThemeMode starts here
         val appSettingPrefs: SharedPreferences = getSharedPreferences("AppThemeModePrefs", 0)
-        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
+        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", true)
         if (!isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
-//
+
 //        mode_switch.isChecked = isNightModeOn
 //        mode_switch.setOnCheckedChangeListener { _: CompoundButton, isNightModeOnFlag: Boolean ->
 //            if (isNightModeOnFlag) {
