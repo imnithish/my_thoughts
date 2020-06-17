@@ -1,4 +1,4 @@
-package com.imnstudios.mythoughts
+package com.imnstudios.mythoughts.ui
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -18,9 +17,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.imnstudios.mythoughts.MainActivity
+import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.utils.hide
 import com.imnstudios.mythoughts.utils.show
 import com.imnstudios.mythoughts.utils.snackbar
+import com.imnstudios.mythoughts.utils.toast
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -56,8 +58,12 @@ class LoginActivity : AppCompatActivity() {
 
             //setting up animation starts here
             slideDownAnim =
-                AnimationUtils.loadAnimation(applicationContext, R.anim.slide_down_animation)
-            fadeInAnim = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in_animation)
+                AnimationUtils.loadAnimation(applicationContext,
+                    R.anim.slide_down_animation
+                )
+            fadeInAnim = AnimationUtils.loadAnimation(applicationContext,
+                R.anim.fade_in_animation
+            )
             heading.animation = slideDownAnim
             Handler().postDelayed({
                 log_in.visibility = View.VISIBLE
@@ -123,12 +129,7 @@ class LoginActivity : AppCompatActivity() {
             ) { task ->
                 if (task.isSuccessful) {
                     Log.d(tag, " signInWithCredential:success")
-                    Toast.makeText(
-                        this,
-                        "Welcome " + auth.currentUser?.displayName,
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    toast("Welcome " + auth.currentUser?.displayName)
                     Intent(this, MainActivity::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
