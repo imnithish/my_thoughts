@@ -28,10 +28,10 @@ class HomeActivity : AppCompatActivity() {
         //initialise the FirebaseAuth object
         auth = FirebaseAuth.getInstance()
 
-        log_out.setOnClickListener {
-            auth.signOut()
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+//        log_out.setOnClickListener {
+//            auth.signOut()
+//            startActivity(Intent(this, LoginActivity::class.java))
+//        }
 
         //setting up HomePager
         homePagerAdapter = HomePagerAdapter(supportFragmentManager)
@@ -56,17 +56,27 @@ class HomeActivity : AppCompatActivity() {
         })
 
         homePager.currentItem = 1
+        add_thoughts.setImageResource(R.drawable.add_colored)
 
         all_thoughts.setOnClickListener {
             homePager.currentItem = 0
+            all_thoughts.setImageResource(R.drawable.thoughts_colored)
+            add_thoughts.setImageResource(R.drawable.add_black)
+            settings.setImageResource(R.drawable.settings_black)
         }
 
         add_thoughts.setOnClickListener {
             homePager.currentItem = 1
+            all_thoughts.setImageResource(R.drawable.thoughts_black)
+            add_thoughts.setImageResource(R.drawable.add_colored)
+            settings.setImageResource(R.drawable.settings_black)
         }
 
         settings.setOnClickListener {
             homePager.currentItem = 2
+            all_thoughts.setImageResource(R.drawable.thoughts_black)
+            add_thoughts.setImageResource(R.drawable.add_black)
+            settings.setImageResource(R.drawable.settings_colored)
         }
     }
 

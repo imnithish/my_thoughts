@@ -28,7 +28,7 @@
             android:shadowDy="2"
             android:shadowRadius="1"
             android:text="@string/app_full_name"
-            android:textColor="#ffff"
+            android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
 
