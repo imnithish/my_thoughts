@@ -2,13 +2,12 @@
 <resources>
     <color name="colorPrimary">#008000</color>
     <color name="colorPrimaryDark">#2D313D</color>
-    <color name="colorAccent">	#00FF00</color>
+    <color name="colorAccent">#25D366</color>
 
     <color name="mainText">#ffffff</color>
-    <color name="textAlt">#8D8F97</color>
+    <color name="textAlt">#9E9E9E</color>
     <color name="mainBackground">#2D313D</color>
     <color name="dark">#2D313D</color>
-
 
 
     <color name="bright_pink">#FF007F</color>

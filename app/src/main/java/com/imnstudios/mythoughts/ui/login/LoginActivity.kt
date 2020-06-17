@@ -1,4 +1,4 @@
-package com.imnstudios.mythoughts.ui
+package com.imnstudios.mythoughts.ui.login
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -17,7 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.imnstudios.mythoughts.MainActivity
+import com.imnstudios.mythoughts.ui.home.HomeActivity
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.utils.hide
 import com.imnstudios.mythoughts.utils.show
@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         setupAppTheme()
 
         if (auth.currentUser != null) {
-            Intent(this, MainActivity::class.java).also {
+            Intent(this, HomeActivity::class.java).also {
                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(it)
                 overridePendingTransition(
@@ -130,7 +130,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(tag, " signInWithCredential:success")
                     toast("Welcome " + auth.currentUser?.displayName)
-                    Intent(this, MainActivity::class.java).also {
+                    Intent(this, HomeActivity::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
                         overridePendingTransition(
