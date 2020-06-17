@@ -7,4 +7,18 @@
     <color name="mainText">#2D313D</color>
     <color name="textAlt">#8D8F97</color>
     <color name="mainBackground">#ffffff</color>
+    <color name="dark">#2D313D</color>
+
+
+    <color name="bright_pink">#FF007F</color>
+    <color name="orange">#FF7F00</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="spring_green">#00FF7F</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="azure">#007FFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="violet">#7F00FF</color>
+    <color name="magenta">#FF00FF</color>
+    <color name="green">#00FF00</color>
+
 </resources>

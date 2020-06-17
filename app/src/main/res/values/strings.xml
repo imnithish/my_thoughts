@@ -3,4 +3,18 @@
     <string name="app_full_name">My Thoughts</string>
     <string name="log_in_prompt">Log in to continue</string>
     <string name="mode_switch_text">Dark Mode</string>
+
+
+    <array name="mixed_colors">
+        <item>@color/blue</item>
+        <item>@color/bright_pink</item>
+        <item>@color/orange</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+        <item>@color/spring_green</item>
+        <item>@color/cyan</item>
+        <item>@color/azure</item>
+        <item>@color/violet</item>
+        <item>@color/magenta</item>
+    </array>
 </resources>

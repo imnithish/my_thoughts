@@ -8,11 +8,9 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -31,9 +29,6 @@ class LoginActivity : AppCompatActivity() {
     private val RC_SIGN_IN = 1
     private val tag = "LoginActivity"
 
-    private lateinit var baseLayout: ConstraintLayout
-    private lateinit var progressBar: ProgressBar
-
     companion object {
         lateinit var auth: FirebaseAuth
         lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -42,8 +37,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        baseLayout = findViewById(R.id.base_layout)
-        progressBar = findViewById(R.id.progress_bar)
 
         //setting up animation starts here
         slideDownAnim =
@@ -88,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun signIn() {
         progress_bar.show()
+        log_in.hide()
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
@@ -106,8 +100,9 @@ class LoginActivity : AppCompatActivity() {
                 //authenticating with firebase
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
-                baseLayout.snackbar("Something's wrong $e")
+                base_layout.snackbar("Something's wrong $e")
                 progress_bar.hide()
+                log_in.show()
             }
         }
     }
@@ -124,7 +119,11 @@ class LoginActivity : AppCompatActivity() {
             ) { task ->
                 if (task.isSuccessful) {
                     Log.d(tag, " signInWithCredential:success")
-                    Toast.makeText(this, "Welcome "+ auth.currentUser?.displayName, Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        this,
+                        "Welcome " + auth.currentUser?.displayName,
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     Intent(this, MainActivity::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -132,8 +131,9 @@ class LoginActivity : AppCompatActivity() {
                     }
                 } else {
                     Log.w(tag, " signInWithCredential:failure", task.exception)
-                    baseLayout.snackbar("Authentication failed ${task.exception.toString()}")
+                    base_layout.snackbar("Authentication failed ${task.exception.toString()}")
                     progress_bar.hide()
+                    log_in.show()
                 }
             }
     }

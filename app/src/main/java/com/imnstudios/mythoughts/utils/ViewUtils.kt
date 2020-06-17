@@ -2,6 +2,7 @@ package com.imnstudios.mythoughts.utils
 
 import android.content.Context
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
@@ -15,6 +16,14 @@ fun ProgressBar.show() {
 }
 
 fun ProgressBar.hide() {
+    visibility = View.GONE
+}
+
+fun Button.show() {
+    visibility = View.VISIBLE
+}
+
+fun Button.hide() {
     visibility = View.GONE
 }
 
