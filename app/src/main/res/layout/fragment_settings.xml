@@ -41,10 +41,24 @@
             android:textStyle="bold"
             app:cornerRadius="12sp" />
 
+        <Button
+            android:id="@+id/log_out_btn"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/log_out"
+            android:textAllCaps="false"
+            android:textColor="#ffff"
+            android:textStyle="bold"
+            app:cornerRadius="12sp" />
+
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/mode_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
             android:checked="true"
             android:fontFamily="@font/open_sans"
             android:text="@string/mode_switch_text"
@@ -56,20 +70,6 @@
 
 
         <Button
-            android:id="@+id/log_out_btn"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30sp"
-            android:backgroundTint="@color/red"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/log_out"
-            android:textAllCaps="false"
-            android:textColor="#ffff"
-            android:textStyle="bold"
-            app:cornerRadius="12sp" />
-
-        <Button
             android:id="@+id/privacy_policy_btn"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
@@ -79,6 +79,18 @@
             android:textAllCaps="false"
             android:textColor="@color/mainText"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/about_btn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/about"
+            android:textAllCaps="false"
+            android:textColor="@color/mainText"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 

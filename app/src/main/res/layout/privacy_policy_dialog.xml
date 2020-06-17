@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="12sp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/mainBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10sp"
+            tools:ignore="WebViewLayout">
+
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="300sp"
+                android:layout_height="400sp"
+                android:visibility="invisible" />
+
+            <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="28sp"
+                android:indeterminate="true"
+                android:visibility="visible"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

@@ -2,19 +2,24 @@ package com.imnstudios.mythoughts.ui.home.fragments
 
 import android.app.Dialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import android.webkit.WebView
+import android.widget.*
 import androidx.fragment.app.Fragment
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import com.imnstudios.mythoughts.R
-import com.imnstudios.mythoughts.ui.home.HomeActivity
 import com.imnstudios.mythoughts.ui.login.LoginActivity
+import com.imnstudios.mythoughts.utils.AppThemeMode
+import com.imnstudios.mythoughts.utils.hide
+import fr.castorflex.android.circularprogressbar.CircularProgressBar
 
 
 class SettingsFragment : Fragment() {
@@ -25,12 +30,20 @@ class SettingsFragment : Fragment() {
 
     private lateinit var user: TextView
     private lateinit var logOut: Button
+    private lateinit var about: Button
+    private lateinit var privacyPolicy: Button
+    private lateinit var modeSwitch: SwitchMaterial
+
+    var isNightModeOn: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
 
+        val appSettingPrefs: SharedPreferences =
+            activity!!.getSharedPreferences("AppThemeModePrefs", 0)
+        isNightModeOn = appSettingPrefs.getBoolean("NightMode", true)
 
     }
 
@@ -44,6 +57,9 @@ class SettingsFragment : Fragment() {
         //init views
         user = v.findViewById(R.id.user)
         logOut = v.findViewById(R.id.log_out_btn)
+        about = v.findViewById(R.id.about_btn)
+        privacyPolicy = v.findViewById(R.id.privacy_policy_btn)
+        modeSwitch = v.findViewById(R.id.mode_switch)
 
         user.append(" ${auth.currentUser?.displayName}")
 
@@ -71,6 +87,43 @@ class SettingsFragment : Fragment() {
                 dialog.dismiss()
             }
         }
+
+        about.setOnClickListener {
+            val dialog = Dialog(activity!!)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setContentView(R.layout.about_dialog)
+            dialog.setCancelable(true)
+            dialog.show()
+        }
+
+        privacyPolicy.setOnClickListener {
+            val dialog = Dialog(activity!!)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setContentView(R.layout.privacy_policy_dialog)
+            dialog.setCancelable(true)
+            dialog.show()
+            val webView = dialog.findViewById<WebView>(R.id.web_view)
+            val progressBar = dialog.findViewById<CircularProgressBar>(R.id.progress_bar)
+            webView.loadUrl("https://imnithish.github.io/hellorc-1/")
+            val handler = Handler()
+            handler.postDelayed({
+                progressBar.hide()
+                webView.visibility = View.VISIBLE
+            }, 3000)
+        }
+
+        //setting up the mode switch
+        modeSwitch.isChecked = isNightModeOn
+        modeSwitch.setOnCheckedChangeListener { _: CompoundButton, isNightModeOnFlag: Boolean ->
+            if (isNightModeOnFlag) {
+                val appTheme = AppThemeMode(true, activity!!)
+                appTheme.setTheme()
+            } else {
+                val appTheme = AppThemeMode(false, activity!!)
+                appTheme.setTheme()
+            }
+        }
+
         return v
     }
 

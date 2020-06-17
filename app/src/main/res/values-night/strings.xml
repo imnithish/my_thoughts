@@ -12,10 +12,20 @@
     <string name="hi">Hi,</string>
     <string name="log_out">Log out</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="about">About</string>
     <string name="backup">Backup and Sync</string>
     <string name="log_out_prompt">Sure to Log out?</string>
 
     <string name="cancel">Cancel</string>
+
+    <string name="license">Designed and Coded by Nitheesh Ag\n\nCopyright 2020 imnstudios\n\nLicensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\n
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an \"AS IS\" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.</string>
 
     <array name="mixed_colors">
         <item>@color/blue</item>

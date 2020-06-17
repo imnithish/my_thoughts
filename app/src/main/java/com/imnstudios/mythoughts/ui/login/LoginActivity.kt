@@ -129,7 +129,6 @@ class LoginActivity : AppCompatActivity() {
             ) { task ->
                 if (task.isSuccessful) {
                     Log.d(tag, " signInWithCredential:success")
-                    toast("Welcome " + auth.currentUser?.displayName)
                     Intent(this, HomeActivity::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
