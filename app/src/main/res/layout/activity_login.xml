@@ -41,7 +41,7 @@
             android:layout_marginTop="20sp"
             android:text="@string/log_in_prompt"
             android:visibility="invisible"
-            app:isDarkTheme="true"
+            app:isDarkTheme="false"
             tools:visibility="visible" />
 
 

@@ -36,48 +36,52 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-
-        //setting up animation starts here
-        slideDownAnim =
-            AnimationUtils.loadAnimation(applicationContext, R.anim.slide_down_animation)
-        fadeInAnim = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in_animation)
-        heading.animation = slideDownAnim
-        Handler().postDelayed({
-            log_in.visibility = View.VISIBLE
-            log_in.animation = fadeInAnim
-        }, 500)
-        //setting up animation ends here
-
-        setupAppTheme()
 
         //initialise the FirebaseAuth object
         auth = FirebaseAuth.getInstance()
 
-        //GoogleSignInOptions object
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .build()
+        setupAppTheme()
 
-        //get the GoogleSignInClient object from GoogleSignIn class
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        log_in.setOnClickListener {
-            signIn()
-        }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
         if (auth.currentUser != null) {
             Intent(this, MainActivity::class.java).also {
                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(it)
+                overridePendingTransition(
+                    R.anim.activity_fade_in_animation,
+                    R.anim.activity_fade_out_animation
+                )
+            }
+        } else {
+            setContentView(R.layout.activity_login)
+
+            //setting up animation starts here
+            slideDownAnim =
+                AnimationUtils.loadAnimation(applicationContext, R.anim.slide_down_animation)
+            fadeInAnim = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in_animation)
+            heading.animation = slideDownAnim
+            Handler().postDelayed({
+                log_in.visibility = View.VISIBLE
+                log_in.animation = fadeInAnim
+            }, 500)
+            //setting up animation ends here
+
+
+            //GoogleSignInOptions object
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .build()
+
+            //get the GoogleSignInClient object from GoogleSignIn class
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+            log_in.setOnClickListener {
+                signIn()
             }
         }
+
     }
+
 
     private fun signIn() {
         progress_bar.show()
@@ -128,6 +132,10 @@ class LoginActivity : AppCompatActivity() {
                     Intent(this, MainActivity::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
+                        overridePendingTransition(
+                            R.anim.activity_fade_in_animation,
+                            R.anim.activity_fade_out_animation
+                        )
                     }
                 } else {
                     Log.w(tag, " signInWithCredential:failure", task.exception)

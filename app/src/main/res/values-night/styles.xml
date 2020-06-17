@@ -5,15 +5,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <item name="cpbStyle">@style/CircularThemeProgressBar</item>
     </style>
 
 
     <!-- Loading theme. -->
     <style name="LoadingTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
         <item name="android:windowBackground">@color/dark</item>
         <item name="colorPrimaryDark">@color/dark</item>
-        <item name="colorAccent">#ffff</item>
         <item name="cpbStyle">@style/CircularThemeProgressBar</item>
     </style>
 
@@ -31,5 +32,6 @@
         <item name="cpb_sweep_speed">@string/cpb_default_sweep_speed</item>
         <item name="cpb_rotation_speed">@string/cpb_default_rotation_speed</item>
     </style>
+
 
 </resources>
