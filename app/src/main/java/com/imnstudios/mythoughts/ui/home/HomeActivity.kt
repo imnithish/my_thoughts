@@ -1,14 +1,12 @@
 package com.imnstudios.mythoughts.ui.home
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager.widget.ViewPager
-import com.google.firebase.auth.FirebaseAuth
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.home.adapters.HomePagerAdapter
-import com.imnstudios.mythoughts.ui.login.LoginActivity
-import com.imnstudios.mythoughts.utils.toast
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -16,17 +14,12 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var homePagerAdapter: HomePagerAdapter
     private lateinit var homePager: ViewPager
 
-    companion object {
-        lateinit var auth: FirebaseAuth
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupAppTheme()
         setContentView(R.layout.activity_home)
-        homePager = findViewById(R.id.home_pager)
 
-        //initialise the FirebaseAuth object
-        auth = FirebaseAuth.getInstance()
+        homePager = findViewById(R.id.home_pager)
 
 
         //setting up HomePager
@@ -98,4 +91,14 @@ class HomeActivity : AppCompatActivity() {
 
         }
     }
+    private fun setupAppTheme() {
+        val appSettingPrefs: SharedPreferences = getSharedPreferences("AppThemeModePrefs", 0)
+        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", true)
+        if (!isNightModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+    }
+
 }
