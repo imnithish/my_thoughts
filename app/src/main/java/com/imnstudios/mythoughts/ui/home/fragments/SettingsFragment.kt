@@ -17,7 +17,6 @@ import android.widget.CompoundButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.google.firebase.auth.FirebaseAuth
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.AppThemeMode
@@ -30,10 +29,6 @@ class SettingsFragment : Fragment() {
     private val TAG = "Debug014589"
 //    private val TAG = "SettingsFragmentDebug"
 
-    companion object {
-        lateinit var auth: FirebaseAuth
-    }
-
     private lateinit var user: TextView
     private lateinit var logOut: Button
     private lateinit var about: Button
@@ -45,8 +40,6 @@ class SettingsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, " onCreate SettingsFragment")
-
-        auth = FirebaseAuth.getInstance()
 
         val appSettingPrefs: SharedPreferences =
             activity!!.getSharedPreferences("AppThemeModePrefs", 0)
@@ -69,7 +62,7 @@ class SettingsFragment : Fragment() {
         privacyPolicy = v.findViewById(R.id.privacy_policy_btn)
         modeSwitch = v.findViewById(R.id.mode_switch)
 
-        user.append(" ${auth.currentUser?.displayName}")
+        user.append(" ${SplashScreenActivity.auth.currentUser?.displayName}")
 
         logOut.setOnClickListener {
             val dialog = Dialog(activity!!)
@@ -80,7 +73,7 @@ class SettingsFragment : Fragment() {
             val logOut = dialog.findViewById<Button>(R.id.log_out_confirm_btn)
             val cancel = dialog.findViewById<Button>(R.id.cancel_btn)
             logOut.setOnClickListener {
-                auth.signOut()
+                SplashScreenActivity.auth.signOut()
                 dialog.dismiss()
                 Intent(activity, SplashScreenActivity::class.java).also {
                     it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -27,6 +27,9 @@
         See the License for the specific language governing permissions and
         limitations under the License.</string>
 
+
+    <string name="save">Save</string>
+
     <array name="mixed_colors">
         <item>@color/blue</item>
         <item>@color/bright_pink</item>

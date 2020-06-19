@@ -9,32 +9,25 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.home.HomeActivity
+import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.hide
 import com.imnstudios.mythoughts.utils.show
 import com.imnstudios.mythoughts.utils.snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
-    private val RC_SIGN_IN = 1
-
     //    private val TAG = "LogInActivityDebug"
     private val TAG = "Debug014589"
 
-    companion object {
-        lateinit var auth: FirebaseAuth
-        lateinit var mGoogleSignInClient: GoogleSignInClient
-    }
+    private val RC_SIGN_IN = 1
+    lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, " onCreate LogInActivity")
-
-        //initialise the FirebaseAuth object
-        auth = FirebaseAuth.getInstance()
 
         setContentView(R.layout.activity_login)
 
@@ -89,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
 
         //sign in using Firebase
-        auth.signInWithCredential(credential)
+        SplashScreenActivity.auth.signInWithCredential(credential)
             .addOnCompleteListener(
                 this
             ) { task ->

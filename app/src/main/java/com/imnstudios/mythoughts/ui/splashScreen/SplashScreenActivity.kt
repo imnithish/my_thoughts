@@ -20,13 +20,17 @@ class SplashScreenActivity : AppCompatActivity() {
     private val TAG = "Debug014589"
     private lateinit var slideDownAnim: Animation
 
+    companion object {
+        lateinit var auth: FirebaseAuth
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setupAppTheme()
         super.onCreate(savedInstanceState)
         Log.d(TAG, " onCreate SplashScreenActivityDebug")
         setContentView(R.layout.activity_splash_screen)
 
-        val auth = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         //setting up anim
         slideDownAnim =
