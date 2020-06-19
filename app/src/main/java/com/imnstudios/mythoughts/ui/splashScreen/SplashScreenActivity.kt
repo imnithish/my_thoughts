@@ -31,7 +31,7 @@ class SplashScreenActivity : AppCompatActivity() {
         slideDownAnim =
             AnimationUtils.loadAnimation(
                 applicationContext,
-                R.anim.slide_down_animation
+                R.anim.reveal_animation
             )
         app_name_full.animation = slideDownAnim
 
