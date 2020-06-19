@@ -33,11 +33,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
-            android:backgroundTint="@color/spring_green"
+            android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/open_sans"
             android:text="@string/backup"
             android:textAllCaps="false"
-            android:textColor="#000000"
+            android:textColor="#ffff"
             android:textStyle="bold"
             app:cornerRadius="12sp" />
 

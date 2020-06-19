@@ -56,11 +56,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5sp"
-                    android:backgroundTint="@color/green"
+                    android:backgroundTint="@color/colorPrimary"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/cancel"
                     android:textAllCaps="false"
-                    android:textColor="#000000"
+                    android:textColor="#ffff"
                     android:textStyle="bold"
                     app:cornerRadius="12sp" />
             </LinearLayout>

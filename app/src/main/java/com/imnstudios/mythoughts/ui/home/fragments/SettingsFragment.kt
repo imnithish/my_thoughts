@@ -12,12 +12,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
-import android.widget.*
+import android.widget.Button
+import android.widget.CompoundButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import com.imnstudios.mythoughts.R
-import com.imnstudios.mythoughts.ui.login.LoginActivity
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.AppThemeMode
 import com.imnstudios.mythoughts.utils.hide
@@ -39,7 +40,7 @@ class SettingsFragment : Fragment() {
     private lateinit var privacyPolicy: Button
     private lateinit var modeSwitch: SwitchMaterial
 
-    var isNightModeOn: Boolean = false
+    private var isNightModeOn: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class SettingsFragment : Fragment() {
 
         val appSettingPrefs: SharedPreferences =
             activity!!.getSharedPreferences("AppThemeModePrefs", 0)
-        isNightModeOn = appSettingPrefs.getBoolean("NightMode", false)
+        isNightModeOn = appSettingPrefs.getBoolean("NightMode", true)
 
     }
 

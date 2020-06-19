@@ -21,5 +21,21 @@
         android:textColor="@color/mainText"
         android:textSize="30sp" />
 
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_name_full"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/rock_salt"
+        android:lineSpacingExtra="0sp"
+        android:shadowColor="@color/textAlt"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:textAlignment="center"
+        android:textColor="@color/mainText"
+        android:textSize="15sp" />
+
 
 </RelativeLayout>

@@ -16,7 +16,7 @@ import com.imnstudios.mythoughts.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 class SplashScreenActivity : AppCompatActivity() {
-//    private val TAG = "SplashScreenActivityDebug"
+    //    private val TAG = "SplashScreenActivityDebug"
     private val TAG = "Debug014589"
     private lateinit var slideDownAnim: Animation
 
@@ -26,6 +26,7 @@ class SplashScreenActivity : AppCompatActivity() {
         Log.d(TAG, " onCreate SplashScreenActivityDebug")
         setContentView(R.layout.activity_splash_screen)
 
+        val auth = FirebaseAuth.getInstance()
 
         //setting up anim
         slideDownAnim =
@@ -35,8 +36,16 @@ class SplashScreenActivity : AppCompatActivity() {
             )
         app_name_full.animation = slideDownAnim
 
+        //design
+        if (auth.currentUser != null) {
+            val userName = getString(R.string.by) + "\n${auth.currentUser?.displayName}"
+            user_name.text = userName
+            user_name.animation = slideDownAnim
+        }
+
+        //decision
         Handler().postDelayed({
-            if (FirebaseAuth.getInstance().currentUser != null) {
+            if (auth.currentUser != null) {
                 Intent(this, HomeActivity::class.java).also {
                     it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(it)
@@ -64,7 +73,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun setupAppTheme() {
         val appSettingPrefs: SharedPreferences = getSharedPreferences("AppThemeModePrefs", 0)
-        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
+        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", true)
         if (!isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         } else {

@@ -3,6 +3,7 @@
     <string name="app_full_name">My Thoughts</string>
     <string name="log_in_prompt">Log in to continue</string>
     <string name="mode_switch_text">Dark Mode</string>
+    <string name="by">By</string>
 
     <string name="all_thoughts">See all thoughts</string>
     <string name="add_thoughts">Add new thoughts</string>
