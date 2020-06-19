@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,10 +26,13 @@ import fr.castorflex.android.circularprogressbar.CircularProgressBar
 
 class SettingsFragment : Fragment() {
 
+    private val TAG = "Debug014589"
+//    private val TAG = "SettingsFragmentDebug"
+
     companion object {
         lateinit var auth: FirebaseAuth
     }
-    private val log = "SettingsFragmentDebug"
+
     private lateinit var user: TextView
     private lateinit var logOut: Button
     private lateinit var about: Button
@@ -39,6 +43,7 @@ class SettingsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, " onCreate SettingsFragment")
 
         auth = FirebaseAuth.getInstance()
 
@@ -52,6 +57,7 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, " onCreateView SettingsFragment")
         // Inflate the layout for this fragment
         val v: View = inflater.inflate(R.layout.fragment_settings, container, false)
 

@@ -1,6 +1,7 @@
 package com.imnstudios.mythoughts.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.imnstudios.mythoughts.R
@@ -8,12 +9,14 @@ import com.imnstudios.mythoughts.ui.home.adapters.HomePagerAdapter
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
-    private val tag = "HomeActivityDebug"
+    //    private val TAG = "HomeActivityActivityDebug"
+    private val TAG = "Debug014589"
     private lateinit var homePagerAdapter: HomePagerAdapter
     private lateinit var homePager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, " onCreate HomeActivity")
 
         setContentView(R.layout.activity_home)
 

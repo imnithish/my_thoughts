@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
@@ -15,11 +16,13 @@ import com.imnstudios.mythoughts.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 class SplashScreenActivity : AppCompatActivity() {
-    private val log = "SplashScreenActivityDebug"
+//    private val TAG = "SplashScreenActivityDebug"
+    private val TAG = "Debug014589"
     private lateinit var slideDownAnim: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, " onCreate SplashScreenActivityDebug")
         setContentView(R.layout.activity_splash_screen)
         setupAppTheme()
 

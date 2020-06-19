@@ -20,7 +20,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
     private val RC_SIGN_IN = 1
-    private val tag = "LoginActivityDebug"
+
+    //    private val TAG = "LogInActivityDebug"
+    private val TAG = "Debug014589"
 
     companion object {
         lateinit var auth: FirebaseAuth
@@ -29,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, " onCreate LogInActivity")
 
         //initialise the FirebaseAuth object
         auth = FirebaseAuth.getInstance()
@@ -81,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        Log.d(tag, " firebaseAuthWithGoogle:" + acct.id!!)
+        Log.d(TAG, " firebaseAuthWithGoogle:" + acct.id!!)
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
 
@@ -91,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                 this
             ) { task ->
                 if (task.isSuccessful) {
-                    Log.d(tag, " signInWithCredential:success")
+                    Log.d(TAG, " signInWithCredential:success")
                     Intent(this, HomeActivity::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
@@ -101,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
                         )
                     }
                 } else {
-                    Log.w(tag, " signInWithCredential:failure", task.exception)
+                    Log.w(TAG, " signInWithCredential:failure", task.exception)
                     base_layout.snackbar("Authentication failed ${task.exception.toString()}")
                     progress_bar.hide()
                     log_in.show()
