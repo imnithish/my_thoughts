@@ -21,10 +21,11 @@ class SplashScreenActivity : AppCompatActivity() {
     private lateinit var slideDownAnim: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setupAppTheme()
         super.onCreate(savedInstanceState)
         Log.d(TAG, " onCreate SplashScreenActivityDebug")
         setContentView(R.layout.activity_splash_screen)
-        setupAppTheme()
+
 
         //setting up anim
         slideDownAnim =
@@ -63,7 +64,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun setupAppTheme() {
         val appSettingPrefs: SharedPreferences = getSharedPreferences("AppThemeModePrefs", 0)
-        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", true)
+        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
         if (!isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         } else {

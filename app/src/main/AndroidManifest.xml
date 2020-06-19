@@ -16,8 +16,7 @@
 
         <activity
             android:name=".ui.splashScreen.SplashScreenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/LoadingTheme">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -26,8 +25,7 @@
 
         <activity
             android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/LoadingTheme" />
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.home.HomeActivity"

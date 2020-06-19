@@ -10,13 +10,6 @@
         <item name="cpbStyle">@style/CircularThemeProgressBar</item>
     </style>
 
-    <style name="LoadingTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/blue</item>
-        <item name="android:windowBackground">@color/dark</item>
-        <item name="colorPrimaryDark">@color/dark</item>
-        <item name="cpbStyle">@style/CircularThemeProgressBar</item>
-    </style>
-
     <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10sp</item>
@@ -33,5 +26,8 @@
     </style>
 
 
+    <style name="GoogleSignInButton">
+        <item name="isDarkTheme">false</item>
+    </style>
 
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/base_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark"
+    android:background="@color/mainBackground"
     tools:context=".ui.login.LoginActivity">
 
 
@@ -20,19 +20,19 @@
         android:shadowDy="2"
         android:shadowRadius="1"
         android:text="@string/app_full_name"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/mainText"
         android:textSize="30sp" />
 
 
     <com.shobhitpuri.custombuttons.GoogleSignInButton
+        style="@style/GoogleSignInButton"
         android:id="@+id/log_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/heading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20sp"
-        android:text="@string/log_in_prompt"
-        app:isDarkTheme="true" />
+        android:text="@string/log_in_prompt" />
 
 
     <fr.castorflex.android.circularprogressbar.CircularProgressBar
