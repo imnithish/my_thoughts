@@ -1,22 +1,20 @@
 package com.imnstudios.mythoughts.ui.home
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager.widget.ViewPager
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.home.adapters.HomePagerAdapter
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
-
+    private val tag = "HomeActivityDebug"
     private lateinit var homePagerAdapter: HomePagerAdapter
     private lateinit var homePager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupAppTheme()
+
         setContentView(R.layout.activity_home)
 
         homePager = findViewById(R.id.home_pager)
@@ -91,14 +89,6 @@ class HomeActivity : AppCompatActivity() {
 
         }
     }
-    private fun setupAppTheme() {
-        val appSettingPrefs: SharedPreferences = getSharedPreferences("AppThemeModePrefs", 0)
-        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", true)
-        if (!isNightModeOn) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-    }
+
 
 }

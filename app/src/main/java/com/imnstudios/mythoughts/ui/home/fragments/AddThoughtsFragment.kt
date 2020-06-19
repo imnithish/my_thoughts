@@ -10,6 +10,8 @@ import com.imnstudios.mythoughts.R
 
 class AddThoughtsFragment : Fragment() {
 
+    private val log = "AddThoughtsFragmentDebug"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

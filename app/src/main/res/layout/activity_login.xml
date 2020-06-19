@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/base_layout"
@@ -8,57 +8,44 @@
     android:background="@color/dark"
     tools:context=".ui.login.LoginActivity">
 
-    <RelativeLayout
+
+    <TextView
+        android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/rock_salt"
-            android:shadowColor="@color/textAlt"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="1"
-            android:text="@string/app_full_name"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/rock_salt"
+        android:shadowColor="@color/textAlt"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:text="@string/app_full_name"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
 
 
-        <com.shobhitpuri.custombuttons.GoogleSignInButton
-            android:id="@+id/log_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/heading"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20sp"
-            android:text="@string/log_in_prompt"
-            android:visibility="invisible"
-            app:isDarkTheme="false"
-            tools:visibility="visible" />
+    <com.shobhitpuri.custombuttons.GoogleSignInButton
+        android:id="@+id/log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20sp"
+        android:text="@string/log_in_prompt"
+        app:isDarkTheme="true" />
 
 
-        <fr.castorflex.android.circularprogressbar.CircularProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="30sp"
-            android:layout_height="30sp"
-            android:layout_below="@id/heading"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="28sp"
-            android:indeterminate="true"
-            android:visibility="invisible"
-            tools:visibility="visible" />
+    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_below="@id/heading"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="29sp"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        tools:visibility="visible" />
 
 
-    </RelativeLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

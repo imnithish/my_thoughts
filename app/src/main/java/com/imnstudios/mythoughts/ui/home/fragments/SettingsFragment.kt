@@ -17,6 +17,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.login.LoginActivity
+import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.AppThemeMode
 import com.imnstudios.mythoughts.utils.hide
 import fr.castorflex.android.circularprogressbar.CircularProgressBar
@@ -27,7 +28,7 @@ class SettingsFragment : Fragment() {
     companion object {
         lateinit var auth: FirebaseAuth
     }
-
+    private val log = "SettingsFragmentDebug"
     private lateinit var user: TextView
     private lateinit var logOut: Button
     private lateinit var about: Button
@@ -74,7 +75,7 @@ class SettingsFragment : Fragment() {
             logOut.setOnClickListener {
                 auth.signOut()
                 dialog.dismiss()
-                Intent(activity, LoginActivity::class.java).also {
+                Intent(activity, SplashScreenActivity::class.java).also {
                     it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(it)
                     activity!!.overridePendingTransition(
