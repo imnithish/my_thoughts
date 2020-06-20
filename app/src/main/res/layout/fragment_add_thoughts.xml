@@ -17,12 +17,11 @@
         android:layout_marginTop="15sp"
         android:layout_marginEnd="50sp"
         android:background="@drawable/bottom_navbar_shape"
-        android:backgroundTint="@color/spring_green"
+        android:backgroundTint="@color/button_green"
         android:elevation="5dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:visibility="invisible"
-        tools:visibility="visible">
+        android:visibility="visible">
 
         <Button
             android:id="@+id/save_btn"
@@ -32,12 +31,13 @@
             android:fontFamily="@font/open_sans"
             android:text="@string/save"
             android:textAllCaps="true"
-            android:textColor="#000000"
+            android:textColor="@color/text_green"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/thoughts_container_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/save_btn_container"
@@ -49,19 +49,182 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/thought"
-                android:layout_width="200sp"
-                android:layout_height="100dp"
-                android:layout_centerInParent="true"
-                android:textColor="@color/mainText"
-                android:textColorHint="@color/textAlt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:fontFamily="@font/itim"
+                android:gravity="center"
+                android:hint="@string/thought"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="5sp"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2sp"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
+                android:background="@color/mainBackground"
+                tools:ignore="SmallSp" />
+
+            <EditText
+                android:id="@+id/thought_description"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@null"
+                android:fontFamily="@font/itim"
+                android:gravity="start"
+                android:hint="@string/thought_description"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="5sp"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2sp"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
+                android:background="@color/mainBackground"
+                tools:ignore="SmallSp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:scrollbars="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/color"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/one"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/one"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color" />
+
+                    <ImageButton
+                        android:id="@+id/two"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/two"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color" />
+
+                    <ImageButton
+                        android:id="@+id/three"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/three"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color" />
+
+                    <ImageButton
+                        android:id="@+id/four"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/four"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color" />
+
+                    <ImageButton
+                        android:id="@+id/five"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/five"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color" />
+
+                    <ImageButton
+                        android:id="@+id/six"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/six"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color" />
+
+                    <ImageButton
+                        android:id="@+id/seven"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/seven"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color" />
+
+                    <ImageButton
+                        android:id="@+id/eight"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/eight"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
 
         </LinearLayout>
 

@@ -48,6 +48,8 @@ class HomeActivity : AppCompatActivity() {
         homePager.currentItem = 1
         add_thoughts.setImageResource(R.drawable.add_colored)
 
+
+
         all_thoughts.setOnClickListener {
             homePager.currentItem = 0
             all_thoughts.setImageResource(R.drawable.thoughts_colored)
@@ -92,6 +94,8 @@ class HomeActivity : AppCompatActivity() {
 
         }
     }
+
+
 
 
 }

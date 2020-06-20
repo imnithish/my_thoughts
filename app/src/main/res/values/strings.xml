@@ -30,6 +30,9 @@
 
 
     <string name="save">Save</string>
+    <string name="thought">Write your thoughts</string>
+    <string name="thought_description">Write your thought\'s description</string>
+    <string name="color">Color:</string>
 
 
     <array name="mixed_colors">

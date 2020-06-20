@@ -21,4 +21,17 @@
     <color name="magenta">#FF00FF</color>
     <color name="green">#00FF00</color>
 
+    <color name="button_green">#00FF7F</color>
+    <color name="text_green">#000000</color>
+
+
+    <color name="one">#FFEBEE</color>
+    <color name="two">#FF8A80</color>
+    <color name="three">#EA80FC</color>
+    <color name="four">#B3E5FC</color>
+    <color name="five">#84FFFF</color>
+    <color name="six">#FFF59D</color>
+    <color name="seven">#97EC97</color>
+    <color name="eight">#7E7ECD</color>
+
 </resources>
