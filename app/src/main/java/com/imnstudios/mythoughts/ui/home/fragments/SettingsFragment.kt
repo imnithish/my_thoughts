@@ -35,7 +35,7 @@ class SettingsFragment : Fragment() {
     private lateinit var privacyPolicy: Button
     private lateinit var modeSwitch: SwitchMaterial
 
-    private var isNightModeOn: Boolean = true
+    private var isNightModeOn: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class SettingsFragment : Fragment() {
 
         val appSettingPrefs: SharedPreferences =
             activity!!.getSharedPreferences("AppThemeModePrefs", 0)
-        isNightModeOn = appSettingPrefs.getBoolean("NightMode", true)
+        isNightModeOn = appSettingPrefs.getBoolean("NightMode", false)
 
     }
 

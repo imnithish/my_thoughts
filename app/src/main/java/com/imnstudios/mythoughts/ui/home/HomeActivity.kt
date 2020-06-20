@@ -92,21 +92,21 @@ class HomeActivity : AppCompatActivity() {
             all_thoughts.setImageResource(R.drawable.thoughts_colored)
             add_thoughts.setImageResource(R.drawable.add_black)
             settings.setImageResource(R.drawable.settings_black)
-            home_container.hideKeyboard()
+           hideKeyboard()
         }
         if (position == 1) {
             homePager.currentItem = 1
             all_thoughts.setImageResource(R.drawable.thoughts_black)
             add_thoughts.setImageResource(R.drawable.add_colored)
             settings.setImageResource(R.drawable.settings_black)
-            home_container.hideKeyboard()
+          hideKeyboard()
         }
         if (position == 2) {
             homePager.currentItem = 2
             all_thoughts.setImageResource(R.drawable.thoughts_black)
             add_thoughts.setImageResource(R.drawable.add_black)
             settings.setImageResource(R.drawable.settings_colored)
-            home_container.hideKeyboard()
+         hideKeyboard()
         }
     }
 

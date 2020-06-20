@@ -24,7 +24,7 @@
         android:layout_marginEnd="50sp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/bottom_navbar_shape"
-        android:backgroundTint="@color/mainText"
+        android:backgroundTint="@color/mainBackground"
         android:elevation="5dp"
         android:gravity="center"
         android:orientation="horizontal"

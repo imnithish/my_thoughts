@@ -20,6 +20,7 @@ import com.imnstudios.mythoughts.ui.home.HomeActivity
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.ThoughtColorPicker
 import com.imnstudios.mythoughts.utils.hide
+import com.imnstudios.mythoughts.utils.hideKeyboard
 
 
 class AddThoughtsFragment : Fragment(), View.OnClickListener {
@@ -92,7 +93,7 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         colorEight.setOnClickListener(this)
 
         //setting default card color
-        colorId = ThoughtColorPicker.thoughtColor(colorOne.id)
+        colorId = ThoughtColorPicker.thoughtColor(colorTwo.id)
         cardColor = "#" + Integer.toHexString(ContextCompat.getColor(activity!!, colorId!!))
         thoughtsContainerCard.setCardBackgroundColor(Color.parseColor(cardColor))
 
@@ -136,9 +137,7 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
                     val saved: String = getString(R.string.saved)
                     saveState.text = saved
 
-                    val imm =
-                        activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+                    hideKeyboard()
 
                     val handler = Handler()
                     handler.postDelayed({
@@ -151,9 +150,8 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
                     }, 1000)
 
                 }.addOnFailureListener { e ->
-                    val imm =
-                        activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+                    Log.d(TAG, " Firestore error $e")
+                    hideKeyboard()
                     val error: String = getString(R.string.error)
                     saveState.text = error
 
