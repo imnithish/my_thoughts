@@ -1,27 +1,25 @@
 package com.imnstudios.mythoughts.ui.home.fragments
 
-import android.content.DialogInterface
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.imnstudios.mythoughts.R
-import com.imnstudios.mythoughts.data.network.firebase.FirestoreInstance
+import com.imnstudios.mythoughts.data.db.entities.Thoughts
+import com.imnstudios.mythoughts.ui.home.HomeActivity
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.ThoughtColorPicker
-import kotlinx.android.synthetic.main.fragment_add_thoughts.*
-import kotlinx.android.synthetic.main.fragment_add_thoughts.view.*
+import com.imnstudios.mythoughts.utils.hide
 
 
 class AddThoughtsFragment : Fragment(), View.OnClickListener {
@@ -29,7 +27,9 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
 //    private val TAG = "AddThoughtsFragmentDebug"
 
     private lateinit var thoughtInput: EditText
-    private lateinit var saveButtonContainer: LinearLayout
+    private lateinit var thoughtDescription: EditText
+    private lateinit var saveButton: LinearLayout
+    private lateinit var saveState: TextView
     private lateinit var thoughtsContainerCard: CardView
 
 
@@ -43,18 +43,19 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
     private lateinit var colorSeven: ImageButton
     private lateinit var colorEight: ImageButton
 
-    private lateinit var databaseReference: DatabaseReference
+
     private lateinit var userUid: String
 
-    var cardColor: String? = null
-    var colorId: Int? = null
+    private var cardColor: String? = null
+    private var colorId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, " onCreate AddThoughtsFragment")
 
         userUid = SplashScreenActivity.auth.currentUser?.uid.toString()
-        databaseReference = FirestoreInstance.getDatabase(userUid)!!
+
+
     }
 
     override fun onCreateView(
@@ -64,8 +65,10 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         Log.d(TAG, " onCreateView AddThoughtsFragment")
         val v = inflater.inflate(R.layout.fragment_add_thoughts, container, false)
 
+        saveButton = v.findViewById(R.id.save_btn_container)
+        saveState = v.findViewById(R.id.save_state)
         thoughtInput = v.findViewById(R.id.thought)
-        saveButtonContainer = v.findViewById(R.id.save_btn_container)
+        thoughtDescription = v.findViewById(R.id.thought_description)
         thoughtsContainerCard = v.findViewById(R.id.thoughts_container_card)
 
 
@@ -93,40 +96,78 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         cardColor = "#" + Integer.toHexString(ContextCompat.getColor(activity!!, colorId!!))
         thoughtsContainerCard.setCardBackgroundColor(Color.parseColor(cardColor))
 
-//        thoughtInput.addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(s: Editable?) {
-//
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                if (thoughtInput.length() != 0) {
-//                    saveButtonContainer.visibility = View.VISIBLE
-//                } else {
-//                    saveButtonContainer.visibility = View.INVISIBLE
-//                }
-//            }
-//
-//        })
-//
-//        thoughtInput.setOnEditorActionListener { _, actionId, event ->
-//            if (actionId == EditorInfo.IME_ACTION_DONE) {
-//                saveButtonContainer.visibility = View.GONE
-//            }
-//            true
-//        }
-
-//        fun buttonColor(view: View) {
-//            val id = view.id
-//            val colorId = ThoughtColorPicker.thoughtColor(id)
-//            color = "#" + Integer.toHexString(ContextCompat.getColor(activity!!, colorId))
-//            thoughtsContainerCard.setBackgroundColor(Color.parseColor(color))
-//        }
+        saveButton.setOnClickListener {
+            saveThought()
+        }
 
         return v
+    }
+
+    private fun saveThought() {
+
+
+        val thought = thoughtInput.text.toString()
+        var thoughtDescriptionString = thoughtDescription.text.toString()
+        if (thoughtDescriptionString.isBlank())
+            thoughtDescriptionString = "blank"
+        val color = cardColor.toString()
+
+        if (thought.isBlank())
+            return
+
+        saveButton.isEnabled = false
+        val saving: String = getString(R.string.saving)
+        saveState.text = saving
+
+
+        //pushing to db
+        val thoughts = Thoughts(0, thought, thoughtDescriptionString, color)
+
+        val id: Long? = HomeActivity.viewModel.insert(thoughts)
+
+        if (id != null) {
+            val thoughtsToFirebase = Thoughts(id.toInt(), thought, thoughtDescriptionString, color)
+
+            HomeActivity.firebaseDb.collection(userUid)
+                .document(id.toString())
+                .set(thoughtsToFirebase)
+                .addOnSuccessListener { _ ->
+
+                    val saved: String = getString(R.string.saved)
+                    saveState.text = saved
+
+                    val imm =
+                        activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+
+                    val handler = Handler()
+                    handler.postDelayed({
+                        saveButton.isEnabled = true
+                        val save: String = getString(R.string.save)
+                        saveState.text = save
+                        thoughtInput.text.clear()
+                        thoughtDescription.text.clear()
+
+                    }, 1000)
+
+                }.addOnFailureListener { e ->
+                    val imm =
+                        activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+                    val error: String = getString(R.string.error)
+                    saveState.text = error
+
+                    val handler = Handler()
+                    handler.postDelayed({
+                        saveButton.isEnabled = true
+                        val save: String = getString(R.string.save)
+                        saveState.text = save
+                        thoughtInput.clearFocus()
+                        thoughtDescription.clearFocus()
+                    }, 1000)
+                }
+        }
+
     }
 
     override fun onClick(v: View?) {

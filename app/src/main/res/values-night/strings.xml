@@ -33,6 +33,10 @@
     <string name="thought_description">Write your thought\'s description</string>
     <string name="color">Color:</string>
 
+    <string name="saving">Saving..</string>
+    <string name="saved">Saved</string>
+    <string name="error">Error</string>
+
     <array name="mixed_colors">
         <item>@color/blue</item>
         <item>@color/bright_pink</item>
