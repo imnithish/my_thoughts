@@ -16,7 +16,7 @@ interface ThoughtsDao {
     @Delete
     fun delete(thoughts: Thoughts)
 
-    @Query("select * from thoughts_table")
+    @Query("select * from thoughts_table ORDER BY id DESC")
     fun getAllThoughts(): LiveData<List<Thoughts>>
 
 

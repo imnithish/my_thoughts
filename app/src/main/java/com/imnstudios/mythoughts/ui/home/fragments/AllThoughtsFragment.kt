@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Query
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.data.db.entities.Thoughts
 import com.imnstudios.mythoughts.ui.home.HomeActivity
@@ -69,18 +70,19 @@ class AllThoughtsFragment : Fragment(), AllThoughtsAdapter.RecycleClick {
     }
 
     private fun populateData() {
-        collectionReference.get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                for (document in task.result!!) {
-                    val id = document.data["id"].toString()
-                    val thought = document.data["thought"].toString()
-                    val thoughtDescription = document.data["thoughtDescription"].toString()
-                    val color = document.data["color"].toString()
-                    val thoughts = Thoughts(id.toInt(), thought, thoughtDescription, color)
-                    HomeActivity.viewModel.insert(thoughts)
+        collectionReference.orderBy("id", Query.Direction.DESCENDING).get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        val id = document.data["id"].toString()
+                        val thought = document.data["thought"].toString()
+                        val thoughtDescription = document.data["thoughtDescription"].toString()
+                        val color = document.data["color"].toString()
+                        val thoughts = Thoughts(id.toInt(), thought, thoughtDescription, color)
+                        HomeActivity.viewModel.insert(thoughts)
+                    }
                 }
             }
-        }
 
     }
 
