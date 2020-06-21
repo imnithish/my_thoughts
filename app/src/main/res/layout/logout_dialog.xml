@@ -42,11 +42,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5sp"
-                    android:backgroundTint="@color/red"
+                    android:backgroundTint="@color/button_red"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/log_out"
                     android:textAllCaps="false"
-                    android:textColor="#ffff"
+                    android:textColor="@color/button_text_color"
                     android:textStyle="bold"
                     app:cornerRadius="12sp" />
 
@@ -56,11 +56,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5sp"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:backgroundTint="@color/button_green"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/cancel"
                     android:textAllCaps="false"
-                    android:textColor="#ffff"
+                    android:textColor="@color/button_text_color"
                     android:textStyle="bold"
                     app:cornerRadius="12sp" />
             </LinearLayout>

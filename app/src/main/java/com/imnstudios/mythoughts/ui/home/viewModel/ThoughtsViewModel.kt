@@ -23,7 +23,7 @@ class ThoughtsViewModel(app: Application) : AndroidViewModel(app) {
         repository.delete(thoughts)
     }
 
-    fun getAllNotes(): LiveData<List<Thoughts>> {
+    fun getAllThoughts(): LiveData<List<Thoughts>> {
         return repository.getAllThoughts()
     }
 }

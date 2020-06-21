@@ -22,7 +22,9 @@
     <color name="green">#00FF00</color>
 
     <color name="button_green">#008000</color>
-    <color name="text_green">#FFFFFF</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="button_red">#7C0202</color>
+
 
 
     <color name="one">#FFEBEE</color>

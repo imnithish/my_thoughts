@@ -37,7 +37,7 @@
             android:fontFamily="@font/open_sans"
             android:text="@string/backup"
             android:textAllCaps="false"
-            android:textColor="@color/text_green"
+            android:textColor="@color/button_text_color"
             android:textStyle="bold"
             app:cornerRadius="12sp" />
 
@@ -46,11 +46,11 @@
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/button_red"
             android:fontFamily="@font/open_sans"
             android:text="@string/log_out"
             android:textAllCaps="false"
-            android:textColor="#ffff"
+            android:textColor="@color/button_text_color"
             android:textStyle="bold"
             app:cornerRadius="12sp" />
 

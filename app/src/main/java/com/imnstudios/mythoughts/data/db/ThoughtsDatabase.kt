@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.imnstudios.mythoughts.data.db.entities.Thoughts
 
 //Database Class
-@Database(entities = [Thoughts::class], version = 1)
+@Database(entities = [Thoughts::class], version = 3)
 abstract class ThoughtsDatabase : RoomDatabase() {
 
     abstract fun thoughtsDao(): ThoughtsDao

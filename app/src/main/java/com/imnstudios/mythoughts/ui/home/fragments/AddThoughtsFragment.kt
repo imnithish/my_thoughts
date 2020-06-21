@@ -21,6 +21,7 @@ import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.ThoughtColorPicker
 import com.imnstudios.mythoughts.utils.hide
 import com.imnstudios.mythoughts.utils.hideKeyboard
+import com.imnstudios.mythoughts.utils.openSoftKeyboard
 
 
 class AddThoughtsFragment : Fragment(), View.OnClickListener {
@@ -97,6 +98,10 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         cardColor = "#" + Integer.toHexString(ContextCompat.getColor(activity!!, colorId!!))
         thoughtsContainerCard.setCardBackgroundColor(Color.parseColor(cardColor))
 
+
+        //focus input on startup
+        openSoftKeyboard(context!!, thoughtInput)
+
         saveButton.setOnClickListener {
             saveThought()
         }
@@ -120,27 +125,28 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         val saving: String = getString(R.string.saving)
         saveState.text = saving
 
+        val roomId = (System.currentTimeMillis() / 1000).toInt()
 
         //pushing to db
-        val thoughts = Thoughts(0, thought, thoughtDescriptionString, color)
+        val thoughts = Thoughts(roomId, thought, thoughtDescriptionString, color)
 
         val id: Long? = HomeActivity.viewModel.insert(thoughts)
 
         if (id != null) {
-            val thoughtsToFirebase = Thoughts(id.toInt(), thought, thoughtDescriptionString, color)
+            val thoughtsToFirebase =
+                Thoughts(id.toInt(), thought, thoughtDescriptionString, color)
 
-            HomeActivity.firebaseDb.collection(userUid)
+            HomeActivity.firestoreDb.collection(userUid)
                 .document(id.toString())
                 .set(thoughtsToFirebase)
-                .addOnSuccessListener { _ ->
+                .addOnSuccessListener {
 
                     val saved: String = getString(R.string.saved)
                     saveState.text = saved
 
-                    hideKeyboard()
-
                     val handler = Handler()
                     handler.postDelayed({
+                        hideKeyboard()
                         saveButton.isEnabled = true
                         val save: String = getString(R.string.save)
                         saveState.text = save
@@ -151,12 +157,13 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
 
                 }.addOnFailureListener { e ->
                     Log.d(TAG, " Firestore error $e")
-                    hideKeyboard()
+
                     val error: String = getString(R.string.error)
                     saveState.text = error
 
                     val handler = Handler()
                     handler.postDelayed({
+                        hideKeyboard()
                         saveButton.isEnabled = true
                         val save: String = getString(R.string.save)
                         saveState.text = save

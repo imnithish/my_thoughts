@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.home.adapters.HomePagerAdapter
 import com.imnstudios.mythoughts.ui.home.viewModel.ThoughtsViewModel
@@ -20,7 +21,7 @@ class HomeActivity : AppCompatActivity() {
 
     companion object {
         lateinit var viewModel: ThoughtsViewModel
-        lateinit var firebaseDb: FirebaseFirestore
+        lateinit var firestoreDb: FirebaseFirestore
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,10 @@ class HomeActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ThoughtsViewModel::class.java)
 
         //firebase firestore
-        firebaseDb = FirebaseFirestore.getInstance()
+        firestoreDb = FirebaseFirestore.getInstance()
+        val firebaseSettings: FirebaseFirestoreSettings =
+            FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).build()
+        firestoreDb.firestoreSettings = firebaseSettings
 
         //setting up HomePager
         homePagerAdapter = HomePagerAdapter(supportFragmentManager)
@@ -92,21 +96,21 @@ class HomeActivity : AppCompatActivity() {
             all_thoughts.setImageResource(R.drawable.thoughts_colored)
             add_thoughts.setImageResource(R.drawable.add_black)
             settings.setImageResource(R.drawable.settings_black)
-           hideKeyboard()
+            hideKeyboard()
         }
         if (position == 1) {
             homePager.currentItem = 1
             all_thoughts.setImageResource(R.drawable.thoughts_black)
             add_thoughts.setImageResource(R.drawable.add_colored)
             settings.setImageResource(R.drawable.settings_black)
-          hideKeyboard()
+            hideKeyboard()
         }
         if (position == 2) {
             homePager.currentItem = 2
             all_thoughts.setImageResource(R.drawable.thoughts_black)
             add_thoughts.setImageResource(R.drawable.add_black)
             settings.setImageResource(R.drawable.settings_colored)
-         hideKeyboard()
+            hideKeyboard()
         }
     }
 
