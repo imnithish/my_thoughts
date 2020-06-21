@@ -17,6 +17,8 @@
     <string name="log_out_prompt">Sure to Log out?</string>
 
     <string name="cancel">Cancel</string>
+    <string name="exit">Exit</string>
+    <string name="exit_prompt">Sure to Exit?</string>
 
     <string name="license">Designed and Coded by Nitheesh Ag\n\nCopyright 2020 imnstudios\n\nLicensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
@@ -29,7 +31,7 @@
 
 
     <string name="save">Save</string>
-    <string name="thought">Write your thoughts</string>
+    <string name="thought">Write your thought</string>
     <string name="thought_description">Write your thought\'s description</string>
     <string name="color">Color:</string>
 

@@ -1,7 +1,13 @@
 package com.imnstudios.mythoughts.ui.home
 
+import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
@@ -9,7 +15,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.home.adapters.HomePagerAdapter
+import com.imnstudios.mythoughts.ui.home.fragments.AddThoughtsFragment
 import com.imnstudios.mythoughts.ui.home.viewModel.ThoughtsViewModel
+import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -18,6 +26,8 @@ class HomeActivity : AppCompatActivity() {
     private val TAG = "Debug014589"
     private lateinit var homePagerAdapter: HomePagerAdapter
     private lateinit var homePager: ViewPager
+
+    private var doubleBackToExitPressedOnce = false
 
     companion object {
         lateinit var viewModel: ThoughtsViewModel
@@ -114,5 +124,24 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        val dialog = Dialog(this)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.logout_dialog)
+        dialog.setCancelable(true)
+        dialog.show()
+        val prompt = dialog.findViewById<TextView>(R.id.log_out_prompt)
+        val exit = dialog.findViewById<Button>(R.id.log_out_confirm_btn)
+        val cancel = dialog.findViewById<Button>(R.id.cancel_btn)
+        prompt.text = getString(R.string.exit_prompt)
+        exit.text = getString(R.string.exit)
+        exit.setOnClickListener {
+            dialog.dismiss()
+            super.onBackPressed()
+        }
+        cancel.setOnClickListener {
+            dialog.dismiss()
+        }
 
+    }
 }

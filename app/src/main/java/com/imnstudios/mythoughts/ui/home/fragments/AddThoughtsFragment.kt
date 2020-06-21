@@ -18,13 +18,10 @@ import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.data.db.entities.Thoughts
 import com.imnstudios.mythoughts.ui.home.HomeActivity
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
-import com.imnstudios.mythoughts.utils.ThoughtColorPicker
-import com.imnstudios.mythoughts.utils.hide
-import com.imnstudios.mythoughts.utils.hideKeyboard
-import com.imnstudios.mythoughts.utils.openSoftKeyboard
+import com.imnstudios.mythoughts.utils.*
 
 
-class AddThoughtsFragment : Fragment(), View.OnClickListener {
+class AddThoughtsFragment : Fragment(), View.OnClickListener{
     private val TAG = "Debug014589"
 //    private val TAG = "AddThoughtsFragmentDebug"
 
@@ -109,7 +106,7 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         return v
     }
 
-    private fun saveThought() {
+    fun saveThought() {
 
 
         val thought = thoughtInput.text.toString()

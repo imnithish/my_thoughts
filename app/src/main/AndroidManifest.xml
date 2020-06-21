@@ -29,7 +29,8 @@
 
         <activity
             android:name=".ui.home.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>
