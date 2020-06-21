@@ -59,13 +59,13 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:fontFamily="@font/itim"
-                android:gravity="start"
+                android:gravity="center"
                 android:hint="@string/thought"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:maxLength="200"
                 android:padding="5sp"
-                android:textAlignment="viewStart"
+                android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -74,7 +74,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="RtlCompat" />
-
 
 
             <EditText
@@ -98,7 +97,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="RtlCompat" />
-
 
 
             <HorizontalScrollView
