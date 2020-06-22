@@ -38,7 +38,7 @@ class AllThoughtsAdapter(val thoughts: List<Thoughts>, val recycleClick: Recycle
         val dateTime = format.format(dateTimeTemp)
         holder.timestampItem.text = dateTime
 
-        holder.thoughtsContainerCard.setBackgroundColor(Color.parseColor(thoughts.color))
+        holder.thoughtsContainerCard.setCardBackgroundColor(Color.parseColor(thoughts.color))
     }
 
     override fun getItemCount(): Int {
