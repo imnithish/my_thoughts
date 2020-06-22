@@ -161,7 +161,6 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
 
     private fun saveThought() {
 
-
         val thought = thoughtInput.text.toString()
         var thoughtDescriptionString = thoughtDescription.text.toString()
         if (thoughtDescriptionString.isBlank())

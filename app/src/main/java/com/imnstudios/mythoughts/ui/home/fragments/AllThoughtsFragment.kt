@@ -1,6 +1,7 @@
 package com.imnstudios.mythoughts.ui.home.fragments
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -21,15 +21,17 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.data.db.entities.Thoughts
+import com.imnstudios.mythoughts.ui.home.EditThoughtsActivity
 import com.imnstudios.mythoughts.ui.home.HomeActivity
 import com.imnstudios.mythoughts.ui.home.adapters.AllThoughtsAdapter
+import com.imnstudios.mythoughts.ui.login.LoginActivity
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 
 
 class AllThoughtsFragment : Fragment(), AllThoughtsAdapter.RecycleClick {
 
     private lateinit var recyclerView: RecyclerView
-    lateinit var getAllThoughts: LiveData<List<Thoughts>>
+    private lateinit var getAllThoughts: LiveData<List<Thoughts>>
     lateinit var allThoughts: List<Thoughts>
     lateinit var allThoughtsAdapter: AllThoughtsAdapter
 
@@ -142,9 +144,28 @@ class AllThoughtsFragment : Fragment(), AllThoughtsAdapter.RecycleClick {
 
     }
 
-    override fun onItemClick(position: Int) {
-        Toast.makeText(activity, "hella", Toast.LENGTH_SHORT).show()
-    }
 
+    //click listeners for items
+    override fun onItemClick(position: Int) {
+        val thoughts = allThoughtsAdapter.getThoughtAt(position)
+
+        val id = thoughts.id
+        val thought = thoughts.thought
+        val thoughtDescription = thoughts.thoughtDescription
+        val color = thoughts.color
+
+
+        Intent(activity!!, EditThoughtsActivity::class.java).also {
+            it.putExtra("id", id)
+            it.putExtra("thought", thought)
+            it.putExtra("thoughtDescription", thoughtDescription)
+            it.putExtra("color", color)
+            startActivity(it)
+            activity!!.overridePendingTransition(
+                R.anim.activity_fade_in_animation,
+                R.anim.activity_fade_out_animation
+            )
+        }
+    }
 
 }

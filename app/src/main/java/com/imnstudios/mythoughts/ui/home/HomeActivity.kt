@@ -1,6 +1,7 @@
 package com.imnstudios.mythoughts.ui.home
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -142,4 +143,5 @@ class HomeActivity : AppCompatActivity() {
         }
 
     }
+
 }

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    tools:context=".ui.home.EditThoughtsActivity">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/thoughts_container_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
+        app:cardCornerRadius="10sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/delete_thought"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:contentDescription="@string/thought_description"
+                android:fontFamily="@font/itim"
+                android:text="@string/delete"
+                android:textAllCaps="false"
+                android:textColor="@color/button_red"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_baseline_delete_24"
+                app:iconTint="@color/button_red" />
+
+
+            <EditText
+                android:id="@+id/thought"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:fontFamily="@font/itim"
+                android:gravity="center"
+                android:hint="@string/thought"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:maxLength="200"
+                android:padding="5sp"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+
+            <EditText
+                android:id="@+id/thought_description"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@null"
+                android:fontFamily="@font/itim"
+                android:gravity="start"
+                android:hint="@string/thought_description"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:maxLength="2000"
+                android:padding="5sp"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:scrollbars="horizontal">
+
+
+                    <ImageButton
+                        android:id="@+id/one"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/one"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color"
+                        android:onClick="cardColor" />
+
+                    <ImageButton
+                        android:id="@+id/two"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/two"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color"
+                        android:onClick="cardColor" />
+
+                    <ImageButton
+                        android:id="@+id/three"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/three"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color"
+                        android:onClick="cardColor" />
+
+                    <ImageButton
+                        android:id="@+id/four"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/four"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color"
+                        android:onClick="cardColor" />
+
+                    <ImageButton
+                        android:id="@+id/five"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/five"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color"
+                        android:onClick="cardColor" />
+
+                    <ImageButton
+                        android:id="@+id/six"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/six"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color"
+                        android:onClick="cardColor" />
+
+                    <ImageButton
+                        android:id="@+id/seven"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/seven"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color"
+                        android:onClick="cardColor" />
+
+                    <ImageButton
+                        android:id="@+id/eight"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/round_shape"
+                        android:backgroundTint="@color/eight"
+                        android:backgroundTintMode="screen"
+                        android:contentDescription="@string/color"
+                        android:onClick="cardColor" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

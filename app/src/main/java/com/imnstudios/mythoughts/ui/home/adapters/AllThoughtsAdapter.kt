@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +21,7 @@ class AllThoughtsAdapter(val thoughts: List<Thoughts>, val recycleClick: Recycle
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.thoughts_item, parent, false)
         return ViewHolder(view)
+
     }
 
 
@@ -34,9 +34,12 @@ class AllThoughtsAdapter(val thoughts: List<Thoughts>, val recycleClick: Recycle
 
         val timestamp = thoughts.id.toLong() * 1000
         val dateTimeTemp = Date(timestamp)
-        val format = SimpleDateFormat("dd.MM.yyyy HH:mm")
+        val format = SimpleDateFormat("h:mm a dd.MM.yyyy")
         val dateTime = format.format(dateTimeTemp)
-        holder.timestampItem.text = dateTime
+
+        var writtenAtString = holder.itemView.context.getString(R.string.written_at)
+        writtenAtString = "$writtenAtString $dateTime"
+        holder.timestampItem.text = writtenAtString
 
         holder.thoughtsContainerCard.setCardBackgroundColor(Color.parseColor(thoughts.color))
     }
@@ -67,7 +70,7 @@ class AllThoughtsAdapter(val thoughts: List<Thoughts>, val recycleClick: Recycle
         fun onItemClick(position: Int)
     }
 
-    fun getNoteAt(position: Int): Thoughts {
+    fun getThoughtAt(position: Int): Thoughts {
         return thoughts[position]
     }
 }

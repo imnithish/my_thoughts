@@ -36,7 +36,7 @@
             android:layout_below="@id/thoughts_item"
             android:layout_marginTop="5sp"
             android:fontFamily="@font/itim"
-            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#000000" />
 
 
