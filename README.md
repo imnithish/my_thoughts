@@ -1,7 +1,7 @@
 # Thoughts or My Thoughts
 is a simple note app in which you can save thoughts that comes to your mind.
 
-![Alt text](/relative/path/to/img.jpg?raw=true)
+![Alt text](https://github.com/imnithish/my_thoughts/blob/master/Images/ss1.png)
 
 ## Features
 * Simple and light
