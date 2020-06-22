@@ -14,7 +14,7 @@ is a simple note app in which you can save thoughts that comes to your mind.
 ## Compatibility
 API 25 (Android 7.1) and up
 
-##Download
+## Download
 [Click here](https://firebasestorage.googleapis.com/v0/b/my-thoughts-f214f.appspot.com/o/mythoughtsrelease-june22.apk?alt=media&token=f36c9464-f285-4d32-b69e-62579d15149a)
 
 ## Contributing
@@ -22,7 +22,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Third party libraries used
 [custom-google-signin-button](https://github.com/shobhitpuri/custom-google-signin-button)
+
 [SmoothProgressBar](https://github.com/castorflex/SmoothProgressBar)
+
 [Android-FadingEdgeLayout](https://github.com/bosphere/Android-FadingEdgeLayout)
 
 ## License
