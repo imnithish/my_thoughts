@@ -109,8 +109,8 @@ class EditThoughtsActivity : AppCompatActivity() {
 
     private fun saveThought() {
 
-        val thoughtValue = thought.text.toString()
-        val thoughtDescriptionValue = thought_description.text.toString()
+        val thoughtValue = thought.text.toString().trim()
+        val thoughtDescriptionValue = thought_description.text.toString().trim()
         val color = colorValue.toString()
 
         if (thoughtValue.isBlank() && thoughtDescriptionValue.isBlank()) {

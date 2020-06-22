@@ -161,8 +161,8 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
 
     private fun saveThought() {
 
-        val thoughtString = thoughtInput.text.toString()
-        val thoughtDescriptionString = thoughtDescription.text.toString()
+        val thoughtString = thoughtInput.text.toString().trim()
+        val thoughtDescriptionString = thoughtDescription.text.toString().trim()
         val color = cardColor.toString()
 
         if (thoughtString.isBlank() && thoughtDescriptionString.isBlank())
