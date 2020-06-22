@@ -25,6 +25,8 @@
     <color name="button_text_color">#000000</color>
     <color name="button_red">#FF0000</color>
 
+    <color name="dark_red">#7C0202</color>
+
 
     <color name="one">#FFEBEE</color>
     <color name="two">#FF8A80</color>

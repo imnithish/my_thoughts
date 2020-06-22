@@ -26,11 +26,14 @@ import com.imnstudios.mythoughts.ui.home.HomeActivity
 import com.imnstudios.mythoughts.ui.home.adapters.AllThoughtsAdapter
 import com.imnstudios.mythoughts.ui.login.LoginActivity
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
+import com.imnstudios.mythoughts.utils.hide
+import com.imnstudios.mythoughts.utils.show
 
 
 class AllThoughtsFragment : Fragment(), AllThoughtsAdapter.RecycleClick {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var noThoughtsMessage: TextView
     private lateinit var getAllThoughts: LiveData<List<Thoughts>>
     lateinit var allThoughts: List<Thoughts>
     lateinit var allThoughtsAdapter: AllThoughtsAdapter
@@ -57,6 +60,7 @@ class AllThoughtsFragment : Fragment(), AllThoughtsAdapter.RecycleClick {
         val v = inflater.inflate(R.layout.fragment_all_thoughts, container, false)
 
         recyclerView = v.findViewById(R.id.recycler_view)
+        noThoughtsMessage = v.findViewById(R.id.no_thoughts_message)
 
         getAllThoughts = HomeActivity.viewModel.getAllThoughts()
         getAllThoughts.observe(activity!!, Observer {
@@ -68,6 +72,11 @@ class AllThoughtsFragment : Fragment(), AllThoughtsAdapter.RecycleClick {
             recyclerView.adapter = allThoughtsAdapter
             val swipe = ItemTouchHelper(helper)
             swipe.attachToRecyclerView(recyclerView)
+            if (allThoughts.isEmpty()) {
+                noThoughtsMessage.show()
+            } else {
+                noThoughtsMessage.hide()
+            }
         })
 
 

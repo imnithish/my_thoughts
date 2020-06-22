@@ -1,10 +1,13 @@
 package com.imnstudios.mythoughts.ui.home.fragments
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -21,6 +24,7 @@ import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.AppThemeMode
 import com.imnstudios.mythoughts.utils.hide
+import com.imnstudios.mythoughts.utils.snackbar
 import fr.castorflex.android.circularprogressbar.CircularProgressBar
 
 
@@ -34,6 +38,7 @@ class SettingsFragment : Fragment() {
     private lateinit var about: Button
     private lateinit var privacyPolicy: Button
     private lateinit var modeSwitch: SwitchMaterial
+    private lateinit var backupBtn: Button
 
     private var isNightModeOn: Boolean = false
 
@@ -61,6 +66,7 @@ class SettingsFragment : Fragment() {
         about = v.findViewById(R.id.about_btn)
         privacyPolicy = v.findViewById(R.id.privacy_policy_btn)
         modeSwitch = v.findViewById(R.id.mode_switch)
+        backupBtn = v.findViewById(R.id.backup_btn)
 
         user.append(" ${SplashScreenActivity.auth.currentUser?.displayName}")
 
@@ -125,7 +131,27 @@ class SettingsFragment : Fragment() {
             }
         }
 
+        backupBtn.setOnClickListener {
+            if (!isInternetAvailable()) {
+                backupBtn.snackbar("Check your network")
+            }else{
+                backupBtn.snackbar("Syncing is happening fine")
+            }
+        }
+
         return v
+    }
+
+    private fun isInternetAvailable(): Boolean {
+        val connectivityManager =
+            activity!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val nw = connectivityManager.activeNetwork ?: return false
+        val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
+        return when {
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            else -> false
+        }
     }
 
 }

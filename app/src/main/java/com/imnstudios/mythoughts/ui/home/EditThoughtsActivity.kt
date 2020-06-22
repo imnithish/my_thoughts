@@ -110,13 +110,15 @@ class EditThoughtsActivity : AppCompatActivity() {
     private fun saveThought() {
 
         val thoughtValue = thought.text.toString()
-        var thoughtDescriptionValue = thought_description.text.toString()
-        if (thoughtDescriptionValue.isBlank())
-            thoughtDescriptionValue = "blank"
+        val thoughtDescriptionValue = thought_description.text.toString()
         val color = colorValue.toString()
 
-        if (thoughtValue.isBlank()) {
-            deleteThought()
+        if (thoughtValue.isBlank() && thoughtDescriptionValue.isBlank()) {
+            finish()
+            overridePendingTransition(
+                R.anim.activity_fade_in_animation,
+                R.anim.activity_fade_out_animation
+            )
             return
         }
 

@@ -161,13 +161,11 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
 
     private fun saveThought() {
 
-        val thought = thoughtInput.text.toString()
-        var thoughtDescriptionString = thoughtDescription.text.toString()
-        if (thoughtDescriptionString.isBlank())
-            thoughtDescriptionString = "blank"
+        val thoughtString = thoughtInput.text.toString()
+        val thoughtDescriptionString = thoughtDescription.text.toString()
         val color = cardColor.toString()
 
-        if (thought.isBlank())
+        if (thoughtString.isBlank() && thoughtDescriptionString.isBlank())
             return
 
         saveButton.isEnabled = false
@@ -177,13 +175,13 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         val roomId = (System.currentTimeMillis() / 1000).toInt()
 
         //pushing to db
-        val thoughts = Thoughts(roomId, thought, thoughtDescriptionString, color)
+        val thoughts = Thoughts(roomId, thoughtString, thoughtDescriptionString, color)
 
         val id: Long? = HomeActivity.viewModel.insert(thoughts)
 
         if (id != null) {
             val thoughtsToFirebase =
-                Thoughts(id.toInt(), thought, thoughtDescriptionString, color)
+                Thoughts(id.toInt(), thoughtString, thoughtDescriptionString, color)
 
             HomeActivity.firestoreDb.collection(userUid)
                 .document(id.toString())

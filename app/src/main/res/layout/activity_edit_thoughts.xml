@@ -32,13 +32,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|end"
                 android:contentDescription="@string/thought_description"
-                android:fontFamily="@font/itim"
+                android:fontFamily="@font/open_sans"
                 android:text="@string/delete"
                 android:textAllCaps="false"
-                android:textColor="@color/button_red"
+                android:textColor="@color/dark_red"
                 android:textStyle="bold"
                 app:icon="@drawable/ic_baseline_delete_24"
-                app:iconTint="@color/button_red" />
+                app:iconTint="@color/dark_red" />
 
 
             <EditText

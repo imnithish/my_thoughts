@@ -24,6 +24,7 @@
     <string name="delete">Delete</string>
 
     <string name="written_at">Written at</string>
+    <string name="no_thoughts">Nothing\'s here.\nThink more!</string>
 
     <string name="license">Designed and Coded by Nitheesh Ag\n\nCopyright 2020 imnstudios\n\nLicensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.

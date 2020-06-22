@@ -30,7 +30,12 @@ class AllThoughtsAdapter(val thoughts: List<Thoughts>, val recycleClick: Recycle
 
         val thoughts = thoughts[position]
 
-        holder.thoughtsItem.text = thoughts.thought
+
+        if (thoughts.thought == ""){
+            holder.thoughtsItem.text = thoughts.thoughtDescription
+        }else{
+            holder.thoughtsItem.text = thoughts.thought
+        }
 
         val timestamp = thoughts.id.toLong() * 1000
         val dateTimeTemp = Date(timestamp)
