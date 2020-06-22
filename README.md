@@ -46,6 +46,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ### Contact
 I'm actively looking for a new opportunity in Android App Development field.
+
+
 If you are interested, please contact me at +918907471155 or imnithish@live.com.
 
 [LinkedIn](https://www.linkedin.com/in/imnithish/)
