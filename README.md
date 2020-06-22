@@ -8,7 +8,7 @@ is a simple note app in which you can save thoughts that comes to your mind.
 * Easy to use
 * Works offline
 * Synced with your GMail automatically whenever internet is available
-* Can use Color cards to customize
+* Can use color cards to customize
 * Option for dark mode
 
 ## Compatibility
