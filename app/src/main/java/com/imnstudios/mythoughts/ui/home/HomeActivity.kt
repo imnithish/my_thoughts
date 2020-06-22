@@ -1,7 +1,6 @@
 package com.imnstudios.mythoughts.ui.home
 
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -15,9 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.ui.home.adapters.HomePagerAdapter
-import com.imnstudios.mythoughts.ui.home.fragments.AddThoughtsFragment
 import com.imnstudios.mythoughts.ui.home.viewModel.ThoughtsViewModel
-import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_home.*
 

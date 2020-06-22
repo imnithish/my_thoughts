@@ -1,25 +1,29 @@
 package com.imnstudios.mythoughts.ui.home.fragments
 
-import android.content.Context
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.google.firebase.firestore.FirebaseFirestore
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.data.db.entities.Thoughts
 import com.imnstudios.mythoughts.ui.home.HomeActivity
 import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
-import com.imnstudios.mythoughts.utils.*
+import com.imnstudios.mythoughts.utils.ThoughtColorPicker
+import com.imnstudios.mythoughts.utils.hideKeyboard
 
 
 class AddThoughtsFragment : Fragment(), View.OnClickListener {
@@ -92,19 +96,67 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         colorEight.setOnClickListener(this)
 
         //setting default card color
-        colorId = ThoughtColorPicker.thoughtColor(colorTwo.id)
+        val colorNum: ImageButton = randomColor()
+        colorId = ThoughtColorPicker.thoughtColor(colorNum.id)
         cardColor = "#" + Integer.toHexString(ContextCompat.getColor(activity!!, colorId!!))
         thoughtsContainerCard.setCardBackgroundColor(Color.parseColor(cardColor))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            saveButton.background.colorFilter =
+                BlendModeColorFilter(Color.parseColor(cardColor), BlendMode.SRC_ATOP)
+        } else {
+            saveButton.background.setColorFilter(
+                Color.parseColor(cardColor),
+                PorterDuff.Mode.SRC_ATOP
+            )
+        }
 
 
         //focus input on startup
         //openSoftKeyboard(context!!, thoughtInput)
+
 
         saveButton.setOnClickListener {
             saveThought()
         }
 
         return v
+    }
+
+    private fun randomColor(): ImageButton {
+
+        val colorNum: ImageButton
+
+        when ((1..8).random()) {
+            1 -> {
+                colorNum = colorOne
+            }
+            2 -> {
+                colorNum = colorTwo
+            }
+            3 -> {
+                colorNum = colorThree
+            }
+            4 -> {
+                colorNum = colorFour
+            }
+            5 -> {
+                colorNum = colorFive
+            }
+            6 -> {
+                colorNum = colorSix
+            }
+            7 -> {
+                colorNum = colorSeven
+            }
+            8 -> {
+                colorNum = colorEight
+            }
+            else -> {
+                colorNum = colorTwo
+            }
+        }
+        return colorNum
+
     }
 
     private fun saveThought() {
@@ -202,6 +254,17 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
         }
         cardColor = "#" + Integer.toHexString(ContextCompat.getColor(activity!!, colorId!!))
         thoughtsContainerCard.setCardBackgroundColor(Color.parseColor(cardColor))
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            saveButton.background.colorFilter =
+                BlendModeColorFilter(Color.parseColor(cardColor), BlendMode.SRC_ATOP)
+        } else {
+            saveButton.background.setColorFilter(
+                Color.parseColor(cardColor),
+                PorterDuff.Mode.SRC_ATOP
+            )
+        }
     }
 
 
