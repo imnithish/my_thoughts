@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -37,6 +38,7 @@ class SettingsFragment : Fragment() {
     private lateinit var logOut: Button
     private lateinit var about: Button
     private lateinit var privacyPolicy: Button
+    private lateinit var contactBtn: Button
     private lateinit var modeSwitch: SwitchMaterial
     private lateinit var backupBtn: Button
 
@@ -65,6 +67,7 @@ class SettingsFragment : Fragment() {
         logOut = v.findViewById(R.id.log_out_btn)
         about = v.findViewById(R.id.about_btn)
         privacyPolicy = v.findViewById(R.id.privacy_policy_btn)
+        contactBtn = v.findViewById(R.id.contact_btn)
         modeSwitch = v.findViewById(R.id.mode_switch)
         backupBtn = v.findViewById(R.id.backup_btn)
 
@@ -134,12 +137,27 @@ class SettingsFragment : Fragment() {
         backupBtn.setOnClickListener {
             if (!isInternetAvailable()) {
                 backupBtn.snackbar("Check your network")
-            }else{
+            } else {
                 backupBtn.snackbar("Syncing is happening fine")
             }
         }
 
+        contactBtn.setOnClickListener {
+
+            openLink()
+        }
+
         return v
+    }
+
+    private fun openLink() {
+        val link = "https://github.com/imnithish/my_thoughts"
+        val uris = Uri.parse(link)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        val b = Bundle()
+        b.putBoolean("new_window", true)
+        intents.putExtras(b)
+        startActivity(intents)
     }
 
     private fun isInternetAvailable(): Boolean {
