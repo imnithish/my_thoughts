@@ -94,7 +94,7 @@
             android:id="@+id/contact_btn"
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             app:icon="@drawable/github"
-            app:iconTint="#282828"
+            app:iconTint="@color/mainText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"

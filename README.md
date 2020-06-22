@@ -15,7 +15,7 @@ is a simple note app in which you can save thoughts that comes to your mind.
 API 25 (Android 7.1) and up
 
 ## Download
-[Click here](https://firebasestorage.googleapis.com/v0/b/my-thoughts-f214f.appspot.com/o/mythoughtsrelease-june22.apk?alt=media&token=f36c9464-f285-4d32-b69e-62579d15149a)
+[Click here](https://firebasestorage.googleapis.com/v0/b/my-thoughts-f214f.appspot.com/o/mythoughts-app-release-june-23.apk?alt=media&token=40a8ebbb-5223-4972-bed7-897b71478f67)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
