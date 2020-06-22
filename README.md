@@ -1,7 +1,7 @@
 # Thoughts or My Thoughts
 is a simple note app in which you can save thoughts that comes to your mind.
 
-<img src="https://github.com/imnithish/my_thoughts/blob/master/Images/ss1.png" width="200">         <img src="https://github.com/imnithish/my_thoughts/blob/master/Images/ss2.png" width="200">
+<img src="https://github.com/imnithish/my_thoughts/blob/master/Images/ss1_framed.png" width="250">             <img src="https://github.com/imnithish/my_thoughts/blob/master/Images/ss2_framed.png" width="250">
 
 ## Features
 * Simple and light
@@ -13,6 +13,9 @@ is a simple note app in which you can save thoughts that comes to your mind.
 
 ## Compatibility
 API 25 (Android 7.1) and up
+
+##Download
+[Click here](https://firebasestorage.googleapis.com/v0/b/my-thoughts-f214f.appspot.com/o/mythoughtsrelease-june22.apk?alt=media&token=f36c9464-f285-4d32-b69e-62579d15149a)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -42,3 +45,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ### Contact
 I'm actively looking for a new opportunity in Android App Development field.
 If you are interested, please contact me at +918907471155 or imnithish@live.com.
+https://www.linkedin.com/in/imnithish/
