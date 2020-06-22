@@ -6,4 +6,4 @@
 * Works offline
 * Synced with your Gmail automatically whenever internet is available
 * Can use Color cards to customize
-* Option for dark mode
+* Option for dark mode 
