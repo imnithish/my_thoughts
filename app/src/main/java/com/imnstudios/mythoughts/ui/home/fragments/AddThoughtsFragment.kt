@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.imnstudios.mythoughts.R
 import com.imnstudios.mythoughts.data.db.entities.Thoughts
@@ -21,7 +22,7 @@ import com.imnstudios.mythoughts.ui.splashScreen.SplashScreenActivity
 import com.imnstudios.mythoughts.utils.*
 
 
-class AddThoughtsFragment : Fragment(), View.OnClickListener{
+class AddThoughtsFragment : Fragment(), View.OnClickListener {
     private val TAG = "Debug014589"
 //    private val TAG = "AddThoughtsFragmentDebug"
 
@@ -97,7 +98,7 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener{
 
 
         //focus input on startup
-        openSoftKeyboard(context!!, thoughtInput)
+        //openSoftKeyboard(context!!, thoughtInput)
 
         saveButton.setOnClickListener {
             saveThought()
@@ -106,7 +107,7 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener{
         return v
     }
 
-    fun saveThought() {
+    private fun saveThought() {
 
 
         val thought = thoughtInput.text.toString()

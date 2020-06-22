@@ -32,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
     companion object {
         lateinit var viewModel: ThoughtsViewModel
         lateinit var firestoreDb: FirebaseFirestore
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
