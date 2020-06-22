@@ -187,37 +187,24 @@ class AddThoughtsFragment : Fragment(), View.OnClickListener {
                 .document(id.toString())
                 .set(thoughtsToFirebase)
                 .addOnSuccessListener {
-
-                    val saved: String = getString(R.string.saved)
-                    saveState.text = saved
-
-                    val handler = Handler()
-                    handler.postDelayed({
-                        hideKeyboard()
-                        saveButton.isEnabled = true
-                        val save: String = getString(R.string.save)
-                        saveState.text = save
-                        thoughtInput.text.clear()
-                        thoughtDescription.text.clear()
-
-                    }, 1000)
-
+                    Log.d(TAG, " Firestore success")
                 }.addOnFailureListener { e ->
                     Log.d(TAG, " Firestore error $e")
-
-                    val error: String = getString(R.string.error)
-                    saveState.text = error
-
-                    val handler = Handler()
-                    handler.postDelayed({
-                        hideKeyboard()
-                        saveButton.isEnabled = true
-                        val save: String = getString(R.string.save)
-                        saveState.text = save
-                        thoughtInput.clearFocus()
-                        thoughtDescription.clearFocus()
-                    }, 1000)
                 }
+
+            val saved: String = getString(R.string.saved)
+            saveState.text = saved
+
+            val handler = Handler()
+            handler.postDelayed({
+                saveButton.isEnabled = true
+                val save: String = getString(R.string.save)
+                saveState.text = save
+                thoughtInput.text.clear()
+                thoughtDescription.text.clear()
+                hideKeyboard()
+            }, 1000)
+
         }
 
     }
