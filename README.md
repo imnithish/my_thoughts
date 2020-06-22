@@ -2,7 +2,7 @@
 is a simple note app in which you can save thoughts that comes to your mind.
 
 ![Alt text](https://github.com/imnithish/my_thoughts/blob/master/Images/ss1.png)
-<img src="https://github.com/favicon.ico" width="48">
+<img src="https://github.com/imnithish/my_thoughts/blob/master/Images/ss1.png" width="48">
 
 ## Features
 * Simple and light
